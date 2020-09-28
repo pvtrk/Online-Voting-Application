@@ -10,7 +10,7 @@ import javax.persistence.Id;
 public class Candidate extends Politician {
 
     private String electionProgram;
-    private long votes;
+    private int votes;
 
     public String getElectionProgram() {
         return electionProgram;
@@ -20,11 +20,11 @@ public class Candidate extends Politician {
         this.electionProgram = electionProgram;
     }
 
-    public long getVotes() {
+    public int getVotes() {
         return votes;
     }
 
-    public void setVotes(long votes) {
+    public void setVotes(int votes) {
         this.votes = votes;
     }
 
@@ -42,5 +42,14 @@ public class Candidate extends Politician {
         } else {
             return true;
         }
+    }
+
+    public Candidate() {
+    }
+
+    public Candidate(String firstName, String lastName, PoliticalParty politicalParty, String electionProgram, int votes) {
+        super(firstName, lastName, politicalParty);
+        this.electionProgram = electionProgram;
+        this.votes = votes;
     }
 }

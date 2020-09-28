@@ -14,12 +14,28 @@
 <nav th:replace="navbarElement.html :: menu"></nav>
 
 <div class="container fill">
-    <div class="alert alert-success confirmAlert" role="alert">
-        <h3 th:text="'Dziękujemy za oddany głos '+ ${user.firstName} + '! Spełniłeś swój obywatelski obowiązek!'"></h3>
-        <h3 th:text="'Liczba głosów oddanych na Twojego kandydata to: ' + ${candidateVotes}"></h3>
-        <h3 th:text="'Frekwencja w wyborach: ' + ${frequency}"></h3>
-        <h3>Od teraz będziesz mógł śledzić wyniki <a th:href="@{/live}">live</a>!</h3>
-    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Imie</th>
+            <th scope="col">Nazwisko</th>
+            <th scope="col">Partia</th>
+            <th scope="col">Ilość głosów</th>
+            <th scope="col">% głosów</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="candidate : ${candidates}">
+            <th scope="row" th:text="${count}" th:with="${count}=${count+1}"></th>
+            <td th:text="${candidate.firstName}"></td>
+            <td th:text="${candidate.lastName}"></td>
+            <td th:text="${candidate.politicalParty} == null ? 'Niezrzeszony' : ${candidate.politicalParty.name}"></td><td th:text="${candidate.lastName}"></td>
+            <td th:text="${candidate.votes}"></td>
+            <td th:text="${candidate.votes}/${totalVotes}"></td>
+        </tr>
+        </tbody>
+    </table>
 
 </div>
 

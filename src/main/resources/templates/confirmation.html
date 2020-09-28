@@ -14,10 +14,13 @@
     <div th:replace="navbarElement.html :: menu"></div>
 
     <div class="container fill">
-        <p th:text="${candidate.firstName}"></p>
-        <a th:href="${'/confirm/' + candidate.id}" class="btn btn-primary vote">Zagłosuj</a>
-        <a href="/reject" class="btn btn-primary moreInfo">Wróć</a>
+        <div class="alert alert-primary confirmAlert" role="alert">
+            <h1 th:text="'Czy jesteś pewny, że chcesz oddać swój głos na kandydata ' + ${candidate.firstName + ' ' + candidate.lastName} + '?'"></h1>
+            <a th:href="${'/confirm/' + candidate.id}" class="btn btn-primary confirmButton">Zagłosuj</a>
+            <a href="/reject" class="btn btn-primary confirmButton">Wróć</a>
+        </div>
     </div>
+
 
 
 

@@ -19,9 +19,53 @@ body {
     bottom: 5px;
     left: 5px;
 }
+.nextPage {
+    position:fixed;
+    top:45%;
+    right:20px;
+    transform: scale(2);
+}
+
+.previousPage {
+    position: fixed;
+    top: 45%;
+    left: 20px;
+    transform: scale(2);
+}
 
 .moreInfo {
     position: absolute;
     bottom: 5px;
     right: 5px;
+}
+
+.candidateCard {
+    min-height: 100%;
+    height: 100%;
+    max-width: 80%;
+    margin-top:auto;
+    margin-left: auto;
+    margin-right: auto;
+    transition: transform .2s;
+}
+.candidateCard:hover {
+    transform: scale(1.10);
+}
+.confirmAlert {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+@media (max-width: 700px) {
+    .previousPage {
+        transform: scale(1.5);
+    }
+    .nextPage {
+        transform: scale(1.5);
+    }
+}
+
+.confirmButton {
+    float: left;
+    margin-right: 20px;
 }

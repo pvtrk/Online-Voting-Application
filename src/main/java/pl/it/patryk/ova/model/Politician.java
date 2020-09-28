@@ -44,4 +44,13 @@ public class Politician {
     public void setPoliticalParty(PoliticalParty politicalParty) {
         this.politicalParty = politicalParty;
     }
+
+    public Politician() {
+    }
+
+    public Politician(String firstName, String lastName, PoliticalParty politicalParty) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.politicalParty = politicalParty;
+    }
 }

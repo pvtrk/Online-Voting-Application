@@ -7,11 +7,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import pl.it.patryk.ova.model.Candidate;
 import pl.it.patryk.ova.model.User;
 import pl.it.patryk.ova.service.CandidateService;
 import pl.it.patryk.ova.service.UserService;
 import pl.it.patryk.ova.service.VoteService;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.stream.Collector;
+
+import static java.util.stream.Collectors.toList;
 
 @Controller
 public class MainController {
@@ -36,10 +43,25 @@ public class MainController {
         this.userService = userService;
     }
 
-    @GetMapping(value = "/index")
-    public String getMainPage(Model model) {
-        Page<Candidate> page = this.candidateService.getAllCandidates(PageRequest.of(0,3));
-        model.addAttribute("candidatePage", page);
+    @GetMapping(value = "/candidateList")
+    public String getMainPage(Model model, @RequestParam(defaultValue = "0") int page) {
+        int currentPage = page;
+        int nextPage =  1;
+        int previousPage = 0;
+        Page<Candidate> candidatesPage = this.candidateService.getAllCandidates(PageRequest.of(page,3));
+        int totalPages = candidatesPage.getTotalPages();
+        if(currentPage >= 1) {
+            previousPage = currentPage - 1;
+        } if(currentPage == totalPages) {
+            nextPage = currentPage;
+        } if(nextPage < totalPages - 1) {
+            nextPage = currentPage + 1;
+        }
+        model.addAttribute("candidatePage", candidatesPage);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("nextPage", nextPage);
+        model.addAttribute("previousPage", previousPage);
         return "index";
     }
 
@@ -54,6 +76,7 @@ public class MainController {
         if(this.voteService.processVote(this.userService.getUserById(1L), this.candidateService.getCandidateById(id))) {
             model.addAttribute("frequency", this.voteService.getFrequency());
             model.addAttribute("candidateVotes", this.voteService.getVotesForCandidate(id));
+            model.addAttribute("user", this.userService.getUserById(1L));
             return "thanksData";
         } else {
             return "errorPage";
@@ -64,5 +87,17 @@ public class MainController {
     @GetMapping(value = "/reject")
     public String reject() {
         return "redirect:/index";
+    }
+
+    @GetMapping(value = "/live")
+    public String getLiveResults(Model model) {
+
+        model.addAttribute("candidates", this.candidateService.getAllCandidates(PageRequest.of(0,11))
+                    .getContent().stream().sorted(Comparator.comparingInt(Candidate::getVotes)).collect(toList()));
+
+        model.addAttribute("totalVotes", this.voteService.getAllVotesCount());
+        model.addAttribute("count", 1);
+
+        return "live";
     }
 }
