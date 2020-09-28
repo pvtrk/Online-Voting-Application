@@ -17,6 +17,12 @@ public class CandidateServiceImpl implements CandidateService {
     public void setCandidateRepository(CandidateRepository candidateRepository) {
         this.candidateRepository = candidateRepository;
     }
+
+    @Override
+    public void save(Candidate candidate) {
+        this.candidateRepository.save(candidate);
+    }
+
     @Override
     public Page<Candidate> getAllCandidates(Pageable pageable) {
         return this.candidateRepository.findAll(pageable);

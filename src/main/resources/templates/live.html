@@ -26,13 +26,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="candidate : ${candidates}">
-            <th scope="row" th:text="${count}" th:with="${count}=${count+1}"></th>
+        <tr th:each="candidate : ${candidates}" >
+            <th scope="row" class="row"></th>
             <td th:text="${candidate.firstName}"></td>
             <td th:text="${candidate.lastName}"></td>
-            <td th:text="${candidate.politicalParty} == null ? 'Niezrzeszony' : ${candidate.politicalParty.name}"></td><td th:text="${candidate.lastName}"></td>
+            <td th:text="${candidate.politicalParty} == null ? 'Niezrzeszony' : ${candidate.politicalParty.name}"></td>
             <td th:text="${candidate.votes}"></td>
-            <td th:text="${candidate.votes}/${totalVotes}"></td>
+            <td th:with="result=${(candidate.votes/totalVotes) * 100}" th:text="${result} + '%'"></td>
         </tr>
         </tbody>
     </table>
@@ -40,7 +40,22 @@
 </div>
 
 
+<script th:inline="javascript">
+    /*<![CDATA[*/
 
+    let count = /*[[${count}]]*/;
+    window.onload = function() {
+        const nodes = document.querySelectorAll("th.row");
+        for(const node of nodes) {
+            node.innerHTML = count++;
+        }
+    };
+
+    /*]]>*/
+
+
+
+</script>
 
 
 

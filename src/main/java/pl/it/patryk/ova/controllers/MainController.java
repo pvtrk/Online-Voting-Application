@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.it.patryk.ova.model.Candidate;
@@ -68,11 +69,12 @@ public class MainController {
     @GetMapping(value = "/vote/{id}")
     public String makeSure(@PathVariable("id") Long id, Model model) {
         model.addAttribute("candidate", this.candidateService.getCandidateById(id));
+        model.addAttribute("user", this.userService.getUserById(1L));
         return "confirmation";
     }
 
     @GetMapping(value = "/confirm/{id}")
-    public String confirm(@PathVariable Long id, Model model) {
+    public String confirm(@PathVariable Long id, Model model, @ModelAttribute User user) {
         if(this.voteService.processVote(this.userService.getUserById(1L), this.candidateService.getCandidateById(id))) {
             model.addAttribute("frequency", this.voteService.getFrequency());
             model.addAttribute("candidateVotes", this.voteService.getVotesForCandidate(id));
@@ -91,12 +93,9 @@ public class MainController {
 
     @GetMapping(value = "/live")
     public String getLiveResults(Model model) {
-
         model.addAttribute("candidates", this.candidateService.getAllCandidates(PageRequest.of(0,11))
                     .getContent().stream().sorted(Comparator.comparingInt(Candidate::getVotes)).collect(toList()));
-
         model.addAttribute("totalVotes", this.voteService.getAllVotesCount());
-        model.addAttribute("count", 1);
 
         return "live";
     }

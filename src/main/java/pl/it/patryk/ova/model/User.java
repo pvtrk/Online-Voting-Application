@@ -11,7 +11,7 @@ public class User extends PortalUser{
     private String pesel;
     @Column(unique = true)
     private String idNumber;
-    private Boolean vote;
+    private Boolean voted;
 
     public Long getId() {
         return id;
@@ -37,24 +37,24 @@ public class User extends PortalUser{
         this.idNumber = idNumber;
     }
 
-    public Boolean getVote() {
-        return vote;
+    public Boolean isVoted() {
+        return voted;
     }
 
-    public void setVote(Boolean vote) {
-        this.vote = vote;
+    public void setVoted(Boolean voted) {
+        this.voted = voted;
     }
 
     public User() {
     }
 
     public User(String firstName, String lastName, String login, String password,
-                Long id, String pesel, String idNumber, Boolean vote) {
+                Long id, String pesel, String idNumber, Boolean voted) {
         super(firstName, lastName, login, password);
         this.id = id;
         this.pesel = pesel;
         this.idNumber = idNumber;
-        this.vote = vote;
+        this.voted = voted;
     }
 
     public boolean authenticateUser() {
