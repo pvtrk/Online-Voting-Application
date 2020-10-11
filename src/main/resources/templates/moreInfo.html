@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>OnlineVotingApplication</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+</head>
+
+<body>
+
+<nav th:replace="navbarElement.html :: menu"></nav>
+
+<div class="container fill">
+    <div class="image-name">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <img src="https://biznes.wprost.pl/_thumb/7e/62/73fde75deddb2a678439de023bb8.jpeg" alt="zdjecie kandydata" class="candidate-image">
+            </div>
+            <div class="col-12 col-md-6">
+                <h3 th:text="${candidate.firstName + ' ' + candidate.lastName}"></h3>
+                <h3 th:if="${candidate.politicalParty}" th:text="${'Partia: ' + candidate.politicalParty.name}"></h3>
+                <h3 th:unless="${candidate.politicalParty}">Partia: niezrzeszony</h3>
+            </div>
+        </div>
+        <div class="election-program"><ipsum>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mollis tincidunt odio. Quisque tortor dui, fringilla nec mauris eu, feugiat dictum nunc. Donec cursus leo rutrum felis dignissim vestibulum. Sed laoreet erat a mi egestas, quis rhoncus urna pretium. Curabitur porta risus id dolor pretium viverra nec ut est. Aenean bibendum posuere nisi eu fermentum. Proin porta ultricies ipsum, ut ullamcorper lacus placerat in. Fusce sit amet vulputate lectus. Vestibulum tempor ante augue, at convallis quam maximus id. Proin ultrices dolor in aliquet facilisis. Nullam commodo commodo lectus eu lacinia. Aliquam nec justo eget ante sollicitudin feugiat finibus sed sem. Mauris laoreet leo turpis, sit amet pretium nibh ultricies vel. Quisque velit massa, vehicula at maximus eget, suscipit nec dolor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.  </ipsum></div>
+        <a th:href="${'/vote/' + candidate.id}" class="btn btn-primary">Zagłosuj</a>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+</script>
+</body>
+
+</html>

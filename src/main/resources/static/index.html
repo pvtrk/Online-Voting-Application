@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>OnlineVotingApplication</title>
+    <link rel="stylesheet" href="js/node_modules/semantic-ui-css/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+<body>
+    <div class="ui container">
+        <div class="ui four item inverted black menu">
+            <div class="header item">
+                Online Voting Application
+            </div>
+            <a class="item" href="/vote">
+                Zagłosuj
+            </a>
+            <a class="item" href="/live">
+                Live
+            </a>
+            <a class="item" href="/faq">
+                FAQ
+            </a>
+            <script id="error-template" type="text/x-handlebars-template">
+                <div class="ui {{color}} inverted segment" style="height:250px;">
+                  <br>
+                  <h2 class="ui center aligned icon header">
+                    <i class="exclamation triangle icon"></i>
+                    <div class="content">
+                      {{title}}
+                      <div class="sub header">{{message}}</div>
+                    </div>
+                  </h2>
+                </div>
+              </script>
+            <!-- Main template-->
+            <script id="main-template" type="text/x-handlebars-template">
+                <h1 class="ui header">Witaj w serwisie dedykowanym do przeprowadzania głosowania online.</h1>
+                    <hr>
+            </script>
+            <!-- Voting template-->
+            <script id="vote-template" type="text/x-handlebars-template">
+                <h1 class="ui header">Zagłosuj</h1>
+                    <hr>
+            </script>
+
+            <!-- Live template -->
+            <script id="live-template" type="text/x-handlebars-template">
+                <h1 class="ui header">Wyniki live</h1>
+                    <hr>
+            </script>
+
+            <!-- FAQ Template -->
+            <script id="faq-template" type="text/x-handlebars-template">
+                <h1 class="ui header">FAQ</h1>
+                    <hr>
+            </script>
+        </div>
+        <div id="app">
+        </div>
+
+
+
+
+
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+                integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+        </script>
+        <script src="js/node_modules/semantic-ui-css/semantic.min.js"></script>
+        <script src="js/node_modules/handlebars/dist/handlebars.min.js"></script>
+        <script src="js/node_modules/vanilla-router/dist/vanilla-router.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+        </script>
+        <script src="js/app.js" type="module"></script>
+        <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+        </script>-->
+</body>
+
+</html>

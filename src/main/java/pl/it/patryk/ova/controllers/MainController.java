@@ -15,14 +15,13 @@ import pl.it.patryk.ova.service.CandidateService;
 import pl.it.patryk.ova.service.UserService;
 import pl.it.patryk.ova.service.VoteService;
 
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.stream.Collector;
 
 import static java.util.stream.Collectors.toList;
 
 @Controller
 public class MainController {
+    /*
 
     private CandidateService candidateService;
     private VoteService voteService;
@@ -88,7 +87,7 @@ public class MainController {
 
     @GetMapping(value = "/reject")
     public String reject() {
-        return "redirect:/index";
+        return "redirect:/candidateList";
     }
 
     @GetMapping(value = "/live")
@@ -99,4 +98,6 @@ public class MainController {
 
         return "live";
     }
+    */
+
 }

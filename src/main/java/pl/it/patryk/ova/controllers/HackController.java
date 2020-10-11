@@ -1,18 +1,21 @@
 package pl.it.patryk.ova.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import pl.it.patryk.ova.dao.CandidateRepository;
 import pl.it.patryk.ova.dao.PoliticalPartyRepository;
-import pl.it.patryk.ova.dao.UserRepository;
 import pl.it.patryk.ova.model.Candidate;
 import pl.it.patryk.ova.model.PoliticalParty;
 import pl.it.patryk.ova.model.User;
 import pl.it.patryk.ova.service.UserService;
 
-@Controller
+@RestController
 public class HackController {
+
     @Autowired
     private CandidateRepository candidateRepository;
     @Autowired
@@ -21,8 +24,8 @@ public class HackController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value="/x69")
-    public String getHacked() {
+    @RequestMapping(value="/x69", method = RequestMethod.GET)
+    public ResponseEntity getHacked() {
 
             PoliticalParty party = new PoliticalParty();
             party.setName("PIS");
@@ -66,30 +69,20 @@ public class HackController {
             candidate.setLastName("Dupa");
             candidate.setElectionProgram("dsagfdagd");
             candidate.setVotes(0);
-            candidate.setPoliticalParty(null);
+            candidate.setPoliticalParty(party);
 
-            Candidate bosak = new Candidate("Krzysztof", "Bosak", null, "Hitlerowski", 0);
-            Candidate biedron = new Candidate("Robert", "Biedroń", null, "Wiosenny", 0);
+            Candidate bosak = new Candidate("Krzysztof", "Bosak",party4 , "Hitlerowski", 0);
+            Candidate biedron = new Candidate("Robert", "Biedroń", party3, "Wiosenny", 0);
             Candidate holownia = new Candidate("Szymon", "Hołownia", null, "TVNowski", 0);
-            Candidate jakubiak = new Candidate("Marek", "Jakubiak", null, "Federacyjne", 0);
-            Candidate kosiniak = new Candidate("Władysław", "Kosiniak-Kamysz", null, "Kamienne", 0);
-            Candidate piotrowski = new Candidate("Mirosław Mariusz", "Piotrowski", null, "Ruch prawdziwie europejski", 0);
+            Candidate jakubiak = new Candidate("Marek", "Jakubiak", party5, "Federacyjne", 0);
+            Candidate kosiniak = new Candidate("Władysław", "Kosiniak-Kamysz", party6, "Kamienne", 0);
+            Candidate piotrowski = new Candidate("Mirosław Mariusz", "Piotrowski", party7, "Ruch prawdziwie europejski", 0);
             Candidate tanajno = new Candidate("Paweł", "Tanajno", null, "TANAJNO XD", 0);
-            Candidate trzaskowski = new Candidate("Rafał", "Trzaskowski", null, "POwski", 0);
-            Candidate witkowski = new Candidate("Waldemar", "Witkowski ", null, "Unijno-pracujacy", 0);
-            Candidate zoltek = new Candidate("Józef", "Żółtek ", null, "Kongresowo-nowo-prawicowy", 0);
+            Candidate trzaskowski = new Candidate("Rafał", "Trzaskowski", party2, "POwski", 0);
+            Candidate witkowski = new Candidate("Waldemar", "Witkowski ", party8, "Unijno-pracujacy", 0);
+            Candidate zoltek = new Candidate("Józef", "Żółtek ", party9, "Kongresowo-nowo-prawicowy", 0);
 
 
-
-            party.addPolitician(candidate);
-            party2.addPolitician(trzaskowski);
-            party3.addPolitician(biedron);
-            party4.addPolitician(bosak);
-            party5.addPolitician(jakubiak);
-            party6.addPolitician(kosiniak);
-            party7.addPolitician(piotrowski);
-            party8.addPolitician(witkowski);
-            party9.addPolitician(zoltek);
             candidateRepository.save(holownia);
             candidateRepository.save(tanajno);
 
@@ -120,6 +113,8 @@ public class HackController {
 
 
 
-        return "hack";
+        return new ResponseEntity(HttpStatus.OK);
     }
+
+
 }

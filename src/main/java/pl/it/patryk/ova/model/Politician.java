@@ -1,6 +1,7 @@
 package pl.it.patryk.ova.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity(name="tpolitician")
 public class Politician {
@@ -52,5 +53,21 @@ public class Politician {
         this.firstName = firstName;
         this.lastName = lastName;
         this.politicalParty = politicalParty;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Politician that = (Politician) o;
+        return id.equals(that.id) &&
+                firstName.equals(that.firstName) &&
+                lastName.equals(that.lastName) &&
+                politicalParty.equals(that.politicalParty);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, politicalParty);
     }
 }

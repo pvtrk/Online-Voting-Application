@@ -3,6 +3,7 @@ package pl.it.patryk.ova.model;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity(name="tpoliticalParty")
 public class PoliticalParty {
@@ -11,8 +12,6 @@ public class PoliticalParty {
     private Long id;
     private String name;
     private String charasteristics;
-    @OneToMany(mappedBy = "politicalParty")
-    private List<Politician> politicians = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -38,16 +37,19 @@ public class PoliticalParty {
         this.charasteristics = charasteristics;
     }
 
-    public List<Politician> getPoliticians() {
-        return politicians;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PoliticalParty that = (PoliticalParty) o;
+        return id.equals(that.id) &&
+                name.equals(that.name) &&
+                charasteristics.equals(that.charasteristics);
     }
 
-    public void setPoliticians(List<Politician> politicians) {
-        this.politicians = politicians;
-    }
-
-    public void addPolitician(Politician politician) {
-        this.politicians.add(politician);
-        politician.setPoliticalParty(this);
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, charasteristics);
     }
 }
