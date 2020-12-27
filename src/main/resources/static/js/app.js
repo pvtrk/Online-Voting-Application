@@ -1,6 +1,4 @@
-
-const API_URL = `http://localhost:8080/api`;
-
+    
 
 window.addEventListener('load', () => {
     const el = $('#app');
@@ -29,9 +27,16 @@ window.addEventListener('load', () => {
         el.html(html);
     });
 
-    router.add('/vote', () => {
+    router.add('/vote', async () => {
         let html = voteTemplate();
         el.html(html);
+        try {
+            const candidates = await fetchFromDb('/candidates');
+            html = voteTemplate({candidates});
+            el.html(html);
+        } catch (error) {
+            console.error(error);
+        }
     });
 
     router.add('/live', () => {

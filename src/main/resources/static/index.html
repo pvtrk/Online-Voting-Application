@@ -45,10 +45,34 @@
             </script>
             <!-- Voting template-->
             <script id="vote-template" type="text/x-handlebars-template">
-                <h1 class="ui header">Zagłosuj</h1>
+                <h1 class="ui header center">Wybierz mądrze, od Ciebie zależy przyszłość ojczyzny</h1>
                     <hr>
+                     <div class="ui divided items">
+                        {{#each candidates}}
+                            <div class="item">
+                                <div class="image">
+                                    <img src="https://static.pb.pl/filtered/fc/281340,658430.jpg">
+                                </div>
+                                <div class="content">
+                                    <a class="header">{{firstName}} {{lastName}}</a>
+                                    <div class="meta">
+                                        <span>{{#if politicalParty}}{{politicalParty.name}}{{else}}Niezrzeszony{{/if}}
+                                        </span>
+                                    </div>
+                            <div class="description">
+                                <p>{{electionProgram}}</p>
+                            </div>
+                                <div class="extra">
+                                    <div class="ui right floated primary button">
+                                        Zagłosuj
+                                        <i class="right chevron icon"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            {{/each}}
+                    </div>
             </script>
-
             <!-- Live template -->
             <script id="live-template" type="text/x-handlebars-template">
                 <h1 class="ui header">Wyniki live</h1>
@@ -64,11 +88,6 @@
         <div id="app">
         </div>
 
-
-
-
-
-
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
                 integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
         </script>
@@ -78,7 +97,8 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
             integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
         </script>
-        <script src="js/app.js" type="module"></script>
+        <script src="js/candidate-service.js"></script>
+        <script src="js/app.js"></script>
         <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
             integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
         </script>-->
