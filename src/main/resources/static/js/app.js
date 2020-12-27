@@ -1,4 +1,5 @@
-    
+import * as CandidateService from './candidate-service.js'
+window.voteForCandidate = CandidateService.voteForCandidate;
 
 window.addEventListener('load', () => {
     const el = $('#app');
@@ -31,7 +32,7 @@ window.addEventListener('load', () => {
         let html = voteTemplate();
         el.html(html);
         try {
-            const candidates = await fetchFromDb('/candidates');
+            const candidates = await CandidateService.fetchFromDb('/candidates');
             html = voteTemplate({candidates});
             el.html(html);
         } catch (error) {
