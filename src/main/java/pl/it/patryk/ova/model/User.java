@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity(name="tuser")
-public class User extends PortalUser implements Serializable {
+public class User extends PortalUser{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

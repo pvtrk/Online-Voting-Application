@@ -12,6 +12,11 @@
 </head>
 
 <body>
+    <div class="navbar">
+        <button id="login-button" class="credentials" type="submit" name="Zaloguj" onClick="login()">Zaloguj</button> 
+        <input id="username" class="credentials" type="text" name="username" placeholder="Login">
+        <input id="password" class="credentials" type="text" name="password" placeholder="Haslo">
+    </div>
     <div class="ui container">
         <div class="ui four item inverted black menu">
             <div class="header item">
@@ -118,7 +123,7 @@
             integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
         </script>
         <!-- <script src="js/candidate-service.js"></script> -->
-        <script type ="module" src="js/app.js"></script>
+        <script src="js/dist/bundle.js"></script>
         <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
             integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
         </script>-->

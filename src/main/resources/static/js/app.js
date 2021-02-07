@@ -1,8 +1,10 @@
 import * as CandidateService from './candidate-service.js'
 import * as PopupService from './popup-service.js'
+import * as LoginService from './login-service.js'
 
 window.voteForCandidate = CandidateService.voteForCandidate;
 window.openModal = PopupService.openModal;
+window.login = LoginService.attemptLogin;
 
 window.addEventListener('load', () => {
     const el = $('#app');
@@ -70,7 +72,9 @@ window.addEventListener('load', () => {
         const path = href.substr(href.lastIndexOf('/'));
         router.navigateTo(path);
     })
-
+    
     // document.getElementyById('voting-button').addEventListener('click', showVotePopup());
     
-});
+})
+
+

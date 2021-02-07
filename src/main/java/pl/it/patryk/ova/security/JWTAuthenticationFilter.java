@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 import static pl.it.patryk.ova.security.SecurityConstants.*;
 
@@ -31,7 +32,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             (HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {
             pl.it.patryk.ova.model.User cred = new ObjectMapper().readValue(request.getInputStream(), pl.it.patryk.ova.model.User.class);
-
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             cred.getUsername(),

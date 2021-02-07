@@ -9,7 +9,10 @@
     "semantic-ui-css": "^2.4.1",
     "vanilla-router": "^1.2.8"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "webpack": "^5.21.1",
+    "webpack-cli": "^4.5.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

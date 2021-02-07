@@ -15,7 +15,6 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-
 import static pl.it.patryk.ova.security.SecurityConstants.LOGIN_URL;
 import static pl.it.patryk.ova.security.SecurityConstants.SIGN_UP_URL;
 
@@ -33,17 +32,16 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
-                .antMatchers(HttpMethod.POST, LOGIN_URL).permitAll()
-                .antMatchers(HttpMethod.GET, "/").permitAll()
-                .antMatchers(HttpMethod.GET, "/css/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/js/**").permitAll()
-                .anyRequest().authenticated()
+        http.cors().and().csrf().disable().authorizeRequests().antMatchers(HttpMethod.POST, SIGN_UP_URL)
+                .permitAll().antMatchers(HttpMethod.GET, "/").permitAll().antMatchers(HttpMethod.GET, "/css/**")
+                .permitAll().antMatchers(HttpMethod.GET, "/js/**", "/favicon.ico").permitAll().anyRequest()
+                .authenticated()
+                .and().httpBasic()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()))
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
     @Override
