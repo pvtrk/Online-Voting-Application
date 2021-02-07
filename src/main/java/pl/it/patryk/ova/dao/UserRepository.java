@@ -6,4 +6,5 @@ import pl.it.patryk.ova.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+    User findUserByUsername(String username);
 }

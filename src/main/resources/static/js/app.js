@@ -1,5 +1,8 @@
 import * as CandidateService from './candidate-service.js'
+import * as PopupService from './popup-service.js'
+
 window.voteForCandidate = CandidateService.voteForCandidate;
+window.openModal = PopupService.openModal;
 
 window.addEventListener('load', () => {
     const el = $('#app');
@@ -38,6 +41,7 @@ window.addEventListener('load', () => {
         } catch (error) {
             console.error(error);
         }
+
     });
 
     router.add('/live', () => {
@@ -66,4 +70,7 @@ window.addEventListener('load', () => {
         const path = href.substr(href.lastIndexOf('/'));
         router.navigateTo(path);
     })
+
+    // document.getElementyById('voting-button').addEventListener('click', showVotePopup());
+    
 });

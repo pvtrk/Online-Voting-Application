@@ -63,15 +63,36 @@
                                 <p>{{electionProgram}}</p>
                             </div>
                                 <div class="extra">
-                                    <div class="ui right floated primary button" onClick="voteForCandidate(`/vote`, {{id}});">
+                                    <div class="ui right floated primary button" id="voting-button" onClick="openModal({{id}});">
                                         Zagłosuj
                                         <i class="right chevron icon"></i>
                                     </div>
                                 </div>
                             </div>
-                            </div>
-                            {{/each}}
+                        </div>
+                        {{/each}}
                     </div>
+                    <div class="ui basic modal">
+                        <div class="ui icon header">
+                          <i class="exclamation icon"></i>
+                          Czy jesteś pewny?
+                        </div>
+                        <div class="content">
+                          <p>Oddać głos możesz tylko jeden raz</p>
+                        </div>
+                        <div class="actions">
+                          <div class="ui red basic cancel inverted button"
+                          id="decline-vote-button">
+                            <i class="remove icon"></i>
+                            Nie
+                          </div>
+                          <div class="ui green ok inverted button"
+                          id="confirm-vote-button">
+                            <i class="checkmark icon"></i>
+                            Tak
+                          </div>
+                        </div>
+                      </div>
             </script>
             <!-- Live template -->
             <script id="live-template" type="text/x-handlebars-template">
@@ -88,8 +109,7 @@
         <div id="app">
         </div>
 
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-                integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
         </script>
         <script src="js/node_modules/semantic-ui-css/semantic.min.js"></script>
         <script src="js/node_modules/handlebars/dist/handlebars.min.js"></script>

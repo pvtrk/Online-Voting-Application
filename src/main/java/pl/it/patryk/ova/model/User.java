@@ -1,9 +1,10 @@
 package pl.it.patryk.ova.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity(name="tuser")
-public class User extends PortalUser{
+public class User extends PortalUser implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -48,9 +49,9 @@ public class User extends PortalUser{
     public User() {
     }
 
-    public User(String firstName, String lastName, String login, String password,
+    public User(String firstName, String lastName, String username, String password,
                 Long id, String pesel, String idNumber, Boolean voted) {
-        super(firstName, lastName, login, password);
+        super(firstName, lastName, username, password);
         this.id = id;
         this.pesel = pesel;
         this.idNumber = idNumber;
